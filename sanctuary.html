@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanctuary — A Monthly Letter from Kenneth H. Otto</title>
+<meta name="description" content="A monthly letter on staying spiritually in tune, from the author of The Law of Resonant Alignment. Delivered by email, or printed and mailed.">
+
+<!-- Open Graph: controls how the page looks when shared on Facebook or in a message. -->
+<meta property="og:title" content="Sanctuary — A Monthly Letter from Kenneth H. Otto">
+<meta property="og:description" content="One letter a month on staying spiritually in tune. Email, or printed and mailed.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ottoaligned.com/resonant-alignment-funnel/sanctuary.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;800&display=swap" rel="stylesheet">
+
+<style>
+/* ---------------------------------------------------------------
+   SANCTUARY — palette taken from the book cover.
+   Change a colour here and it changes everywhere on the page.
+   --------------------------------------------------------------- */
+:root {
+  --olive:        #3B3A1D;   /* book cover background */
+  --olive-deep:   #2B2A14;   /* pressed/hover state */
+  --gold:         #C7A656;   /* book cover foil */
+  --gold-deep:    #A9883C;
+  --parchment:    #F5F0E4;   /* page ground */
+  --card:         #FFFFFF;
+  --rule:         #DED2B8;   /* hairlines and borders */
+  --ink:          #26241D;   /* body text */
+  --muted:        #6B6455;   /* secondary text */
+  --measure:      36rem;     /* prose line length, keeps lines under ~75 characters */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: "Libre Franklin", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+p { margin: 0 0 1.15em; }
+p:last-child { margin-bottom: 0; }
+strong { font-weight: 600; }
+em { font-style: italic; }
+
+a { color: var(--olive); }
+a:hover { color: var(--gold-deep); }
+
+:focus-visible {
+  outline: 3px solid var(--gold-deep);
+  outline-offset: 3px;
+}
+
+/* ---------------- letterhead ---------------- */
+
+.letterhead {
+  background: var(--olive);
+  color: var(--parchment);
+  padding: 2.75rem 1.5rem 2.25rem;
+  text-align: center;
+  border-bottom: 3px solid var(--gold);
+}
+
+.letterhead h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 9vw, 3.75rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  color: var(--gold);
+}
+
+.letterhead .standfirst {
+  margin: 0.85rem auto 0;
+  max-width: 30rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--parchment);
+  opacity: 0.88;
+}
+
+.letterhead .rule {
+  width: 3.5rem;
+  height: 2px;
+  background: var(--gold);
+  margin: 1.5rem auto 0;
+  opacity: 0.55;
+}
+
+/* ---------------- shared layout ---------------- */
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.wrap--wide { max-width: 52rem; }
+
+section { padding: 3rem 0; }
+section + section { border-top: 1px solid var(--rule); }
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+  color: var(--olive);
+}
+
+h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  color: var(--olive);
+}
+
+.lede {
+  font-size: 1.1875rem;
+  line-height: 1.6;
+}
+
+.pull {
+  border-left: 3px solid var(--gold);
+  padding-left: 1.1rem;
+  margin: 1.75rem 0;
+  font-size: 1.0625rem;
+  color: var(--ink);
+}
+
+/* ---------------- what arrives ---------------- */
+
+.arrivals {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.arrivals li {
+  padding: 0.85rem 0 0.85rem 1.6rem;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.arrivals li:last-child { border-bottom: 0; }
+
+.arrivals li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.45rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border: 1.5px solid var(--gold-deep);
+  border-radius: 50%;
+}
+
+/* ---------------- tiers ---------------- */
+
+.tiers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 46rem) {
+  .tiers { grid-template-columns: 1fr 1fr; align-items: stretch; }
+}
+
+.tier {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tier--print {
+  border: 2px solid var(--gold);
+}
+
+.tier h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 0.15rem;
+}
+
+.tier .price {
+  font-size: 2.125rem;
+  font-weight: 800;
+  color: var(--olive);
+  line-height: 1.1;
+  margin: 0.5rem 0 0;
+}
+
+.tier .per {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.tier .detail {
+  margin: 1rem 0 0;
+  font-size: 0.9688rem;
+  color: var(--muted);
+  line-height: 1.55;
+  flex-grow: 1;
+}
+
+.tier .detail p { margin-bottom: 0.75em; }
+
+.btn {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.9rem 1rem;
+  border: 0;
+  border-radius: 4px;
+  background: var(--olive);
+  color: var(--parchment);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn:hover { background: var(--olive-deep); color: var(--parchment); }
+.btn:active { background: var(--olive-deep); }
+
+.btn--gold { background: var(--gold-deep); color: #FFFFFF; }
+.btn--gold:hover { background: #8E7231; color: #FFFFFF; }
+
+.btn[aria-disabled="true"] {
+  background: var(--muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.notice {
+  margin-top: 1.75rem;
+  padding: 0.9rem 1rem;
+  border: 1px dashed var(--gold-deep);
+  border-radius: 4px;
+  background: #FFFDF6;
+  font-size: 0.9375rem;
+  color: var(--ink);
+}
+
+/* ---------------- offering ---------------- */
+
+.offering {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.5rem;
+  font-size: 0.9688rem;
+}
+
+.offering a.inline-cta {
+  font-weight: 600;
+  color: var(--gold-deep);
+}
+
+/* ---------------- plain terms ---------------- */
+
+.terms dt {
+  font-weight: 600;
+  color: var(--olive);
+  margin-top: 1.1rem;
+}
+
+.terms dt:first-child { margin-top: 0; }
+
+.terms dd {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.9688rem;
+  line-height: 1.6;
+}
+
+/* ---------------- footer ---------------- */
+
+footer {
+  background: var(--olive);
+  color: var(--parchment);
+  padding: 2.25rem 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+footer a { color: var(--gold); }
+footer a:hover { color: #E0C47C; }
+
+footer .fine {
+  margin-top: 1rem;
+  opacity: 0.7;
+  font-size: 0.8125rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="letterhead">
+  <h1>Sanctuary</h1>
+  <p class="standfirst">A monthly letter from Kenneth H. Otto, author of <em>The Law of Resonant Alignment</em>.</p>
+  <div class="rule" role="presentation"></div>
+</header>
+
+<main>
+
+  <section>
+    <div class="wrap">
+      <h2>A tuned instrument makes a note. An amplified one fills the room.</h2>
+      <p class="lede">The book gets you tuned. Staying tuned is a different problem, and it isn't solved by reading something once.</p>
+      <p>An instrument left alone drifts. Not because anything went wrong — because that is what instruments do. Heat, humidity, time, and ordinary use pull a string off pitch, and the drift is slow enough that you stop hearing it. You only notice when you sit down beside something already in tune.</p>
+      <p>Sanctuary is that reference pitch, once a month.</p>
+      <p>It is one letter. Not a digest, not a roundup, not a list of links to things I read this week. One idea, worked through properly, with the Scripture it rests on and something to actually do before the next one arrives.</p>
+      <div class="pull">
+        <p>Eight amplifiers are named in chapter eleven of the book — worship, gratitude, Scripture, community, nature, sound and light, purposeful action, service. Not one of them is digital. That is not nostalgia. It is the reason this letter is written the way it is, and the reason you can have it printed and mailed if you want it that way.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What arrives</h2>
+      <p>The first year works through the twelve ideas the book is built on, one per letter, in order.</p>
+      <ul class="arrivals">
+        <li>
+          <h3>The opening letter</h3>
+          <p>Why a letter, and why printed. The argument for analog practice in a life that is being pulled apart by the other kind.</p>
+        </li>
+        <li>
+          <h3>Resonance, not attraction</h3>
+          <p>The physics <em>The Secret</em> got backwards, and what Colossians 1:17 says instead.</p>
+        </li>
+        <li>
+          <h3>What you are actually tuned to</h3>
+          <p>The five-question assessment, worked through one question at a time rather than all at once.</p>
+        </li>
+        <li>
+          <h3>Emotions with momentum</h3>
+          <p>Why the right words arrive two hours after the argument, and what to do in the two hours.</p>
+        </li>
+        <li>
+          <h3>And so on, through the twelve</h3>
+          <p>Resistance and its eleven disguises. Forgiveness as a tuning act. Visualization that isn't fantasy. Love as the highest frequency.</p>
+        </li>
+      </ul>
+      <p style="margin-top:1.5rem;">Letters go out at the start of each month. Print copies are mailed from Alberta, so allow a week or two beyond that depending where you are.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap wrap--wide">
+      <h2>Two ways to receive it</h2>
+      <p>Same letter, same words, two different ways of arriving. Choose the one that fits how you actually read.</p>
+
+      <div class="tiers">
+
+        <div class="tier">
+          <h3>Email</h3>
+          <p class="price">$9.97 <span class="per">USD / month</span></p>
+          <div class="detail">
+            <p>The letter arrives in your inbox at the start of each month. Read it on a screen, print it yourself, forward it to whoever needs it.</p>
+            <p>Cancel any time.</p>
+          </div>
+          <!-- Stripe Payment Link: "Sanctuary — Email", $9.97 USD/month. Created 2026-09-16. -->
+          <a class="btn" href="https://buy.stripe.com/00w6oG6Qz99ucu46wd1sQ00" data-checkout="email">Subscribe by email</a>
+        </div>
+
+        <div class="tier tier--print">
+          <h3>Printed and mailed</h3>
+          <p class="price">$19.97 <span class="per">USD / month</span></p>
+          <div class="detail">
+            <p>The letter is printed and posted to your address. Something to hold, mark up, and leave on the table where you will see it again.</p>
+            <p>Mailed copies arrive with small physical extras through the year — a bookmark, a card for the desk. Made to be kept, not scrolled past.</p>
+            <p>Cancel any time.</p>
+          </div>
+          <!-- Stripe Payment Link: "Sanctuary — Print", $19.97 USD/month. Created 2026-09-16.
+               This link must keep shipping-address collection switched ON in Stripe. -->
+          <a class="btn btn--gold" href="https://buy.stripe.com/4gM3cudeX1H2fGgdYF1sQ01" data-checkout="print">Subscribe by mail</a>
+        </div>
+
+      </div>
+
+      <!-- This box only appears if a payment link above has not been filled in.
+           It stops a visitor hitting a dead checkout button. -->
+      <p class="notice" id="setupNotice" hidden></p>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       OPTIONAL LOVE-OFFERING BLOCK.
+       Stripe's "customers choose what to pay" setting does not apply to
+       recurring subscriptions, so this is a SEPARATE one-time payment
+       link. If you make one, paste its URL over
+       PASTE_STRIPE_OFFERING_LINK_HERE below and delete the word "hidden"
+       from the <section> tag. If you decide not to offer this, delete
+       this whole section and remove the matching line from Card 12.
+       ================================================================ -->
+  <section id="offeringSection" hidden>
+    <div class="wrap">
+      <div class="offering">
+        <h3>If it has meant more than that</h3>
+        <p>Some readers have asked whether they can give beyond the subscription price. You can, as a one-time gift of whatever amount you choose. It is not expected and it changes nothing about what you receive.</p>
+        <p style="margin-bottom:0;"><a class="inline-cta" href="PASTE_STRIPE_OFFERING_LINK_HERE">Send a one-time gift</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>On the price</h2>
+      <p>I will be straight about this, because the audience this book found is rightly suspicious of Christian teaching with a price tag on it.</p>
+      <p>Nine dollars and ninety-seven cents is what the email letter costs because writing one properly takes a week of evenings, and that is a fair number for a month of someone's attention. Nineteen ninety-seven is what the printed one costs because paper, ink, envelope, and postage across a border are real money before I have earned anything, and because folding and stamping them is time I have to protect by keeping that list small.</p>
+      <p>Nothing here is sold as a spiritual return on investment. You are not buying an outcome. You are paying for a letter.</p>
+      <p style="margin-bottom:0;">The book itself is on Amazon at the usual price, and the free guide costs nothing. If money is tight, read those and keep your money.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>The plain terms</h2>
+      <dl class="terms">
+        <dt>Billing</dt>
+        <dd>Monthly, on the day you start, through Stripe. Your card statement will show OTTOALIGNED.COM. I never see your card details.</dd>
+
+        <dt>Cancelling</dt>
+        <dd>Any time, from the receipt Stripe emails you after each payment — there is a link in it to manage or cancel the subscription. If you would rather just tell me, email <a href="mailto:kenneth@ottoaligned.com">kenneth@ottoaligned.com</a> and I will cancel it that week.</dd>
+
+        <dt>Refunds</dt>
+        <dd>If you cancel, billing stops and you are not charged again. If a printed letter goes missing in the post, tell me and I will send another. If you subscribe and it is not what you hoped for, email me within thirty days and I will refund that month.</dd>
+
+        <dt>Your address</dt>
+        <dd>Collected only for the printed tier, only to mail your letter, and never sold, rented, or shared.</dd>
+
+        <dt>Your email</dt>
+        <dd>Used to send the letter and nothing else. Every letter has an unsubscribe link.</dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Kenneth H. Otto</strong><br>
+  Author of <em>The Law of Resonant Alignment</em></p>
+  <p><a href="https://ottoaligned.com">ottoaligned.com</a> &nbsp;·&nbsp; <a href="mailto:kenneth@ottoaligned.com">kenneth@ottoaligned.com</a></p>
+  <p class="fine">Payments handled by Stripe. This page does not use tracking cookies.</p>
+</footer>
+
+<script>
+/* ------------------------------------------------------------------
+   Guard: if a Stripe payment link has not been pasted in yet, disable
+   that button rather than sending a real visitor to a broken URL.
+   Once both links are pasted, this code does nothing at all.
+   ------------------------------------------------------------------ */
+(function () {
+  var unset = [];
+
+  document.querySelectorAll('[data-checkout]').forEach(function (btn) {
+    var href = btn.getAttribute('href') || '';
+    if (href.indexOf('PASTE_STRIPE_') === 0) {
+      btn.setAttribute('aria-disabled', 'true');
+      btn.removeAttribute('href');
+      btn.setAttribute('role', 'button');
+      btn.textContent = 'Not open yet';
+      unset.push(btn.getAttribute('data-checkout'));
+    }
+  });
+
+  if (unset.length) {
+    var notice = document.getElementById('setupNotice');
+    notice.textContent = 'Subscriptions are not open yet. Checkout for the '
+      + unset.join(' and ')
+      + ' option is still being connected — check back shortly.';
+    notice.hidden = false;
+  }
+
+  /* Same guard for the optional one-time gift link. */
+  var offering = document.getElementById('offeringSection');
+  if (offering && !offering.hidden) {
+    var giftLink = offering.querySelector('a.inline-cta');
+    var giftHref = giftLink ? (giftLink.getAttribute('href') || '') : '';
+    if (giftHref.indexOf('PASTE_STRIPE_') === 0) {
+      offering.hidden = true;
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
