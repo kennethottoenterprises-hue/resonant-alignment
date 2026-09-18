@@ -122,31 +122,6 @@
     margin: 0 0 24px;
   }
 
-  .sanctuary-box {
-    border: 1px solid var(--paperline);
-    border-radius: 0.75rem;
-    padding: 20px;
-    background: var(--gray-50);
-    margin-bottom: 24px;
-  }
-  .sanctuary-box h3 {
-    font-weight: 700;
-    color: var(--ink);
-    font-size: 1rem;
-    margin: 0 0 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .sanctuary-box .dot { color: var(--wine); }
-  .sanctuary-box p {
-    font-size: 0.875rem;
-    color: var(--muted);
-    margin: 0 0 12px;
-    line-height: 1.6;
-  }
-  .sanctuary-box p:last-child { margin-bottom: 0; }
-
   .closing-line {
     font-weight: 600;
     color: var(--ink);
@@ -184,8 +159,7 @@
   <div class="card">
 
     <div class="card-header">
-      <div class="check-badge" aria-hidden="true">✓</div>
-      <p class="eyebrow">Peace Be With You</p>
+      <div class="check-badge" aria-hidden="true">✝</div>
       <h1>Welcome to a Grounded Space.</h1>
       <div class="divider"></div>
     </div>
@@ -202,18 +176,8 @@
         <p style="margin:0; font-size:0.875rem; color:var(--muted);">Don't see it within a couple of minutes? Check your spam or promotions folder, and mark it as "not spam" so future notes reach you.</p>
       </div>
 
-      <!-- Shown ONLY when the checkout redirect appends ?sanctuary=true to this page's URL.
-           That flag must be set server-side, in the Stripe success_url, only when the
-           Sanctuary order bump was actually purchased. Do not set this permanently true
-           until /api/create-checkout-session and /api/add-sanctuary-subscription exist. -->
-      <div id="sanctuary-box" class="sanctuary-box" style="display:none;">
-        <h3><span class="dot">●</span> Your Monthly Sanctuary Access is Active</h3>
-        <p>Your digital subscription to <strong>The Resonant Alignment Sanctuary</strong> has been authorized at $9.97/mo. There's nothing else you need to do today.</p>
-        <p>Your first <strong>Monthly Reflection Dispatch</strong> and accompanying <strong>Audio Letter</strong> will arrive by email on the 1st of the month.</p>
-      </div>
-
       <p>
-        Once you've confirmed, I'll follow up over the coming weeks with a few short reflections to help you put the guide into practice and quiet your internal environment.
+        Once you've confirmed, I'll follow up over the coming days with a few short reflections to help you put the guide into practice and quiet your internal environment.
       </p>
       <p class="closing-line">We are moving beyond formulas. Let's begin the daily practice.</p>
     </div>
@@ -232,14 +196,6 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Reads ?sanctuary=true from the redirect URL Stripe sends the customer to
-  // after checkout. Replace this with a real order-lookup call once the
-  // backend exists — a URL param is spoofable and is only a placeholder.
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('sanctuary') === 'true') {
-    document.getElementById('sanctuary-box').style.display = 'block';
-  }
 </script>
 </body>
 </html>
