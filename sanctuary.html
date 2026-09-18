@@ -69,6 +69,15 @@ a:hover { color: var(--gold-deep); }
   padding: 2.75rem 1.5rem 2.25rem;
   text-align: center;
   border-bottom: 3px solid var(--gold);
+  position: relative;
+}
+
+.letterhead .cross {
+  font-size: 1.5rem;
+  color: var(--gold);
+  opacity: 0.9;
+  margin: 0 0 0.5rem;
+  line-height: 1;
 }
 
 .letterhead h1 {
@@ -89,12 +98,122 @@ a:hover { color: var(--gold-deep); }
   opacity: 0.88;
 }
 
+.letterhead .standfirst a {
+  color: var(--gold);
+  opacity: 1;
+  text-decoration: underline;
+  text-decoration-color: rgba(199,166,86,0.5);
+}
+
+.letterhead .standfirst a:hover {
+  text-decoration-color: var(--gold);
+}
+
 .letterhead .rule {
   width: 3.5rem;
   height: 2px;
   background: var(--gold);
   margin: 1.5rem auto 0;
   opacity: 0.55;
+}
+
+/* ---------------- nav menu ---------------- */
+
+.menu-trigger {
+  position: fixed;
+  top: 1.25rem;
+  left: 1.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: var(--olive);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  z-index: 40;
+}
+
+.menu-trigger span {
+  display: block;
+  width: 1.5rem;
+  height: 2px;
+  background: var(--gold);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-trigger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.menu-trigger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.menu-trigger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 13rem;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--olive-deep);
+  border-right: 2px solid var(--gold);
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+  z-index: 30;
+}
+
+.nav-panel.open {
+  transform: translateX(0);
+}
+
+.nav-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 4rem 0 1rem;
+}
+
+.nav-panel li {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.nav-panel li:last-child { border-bottom: 0; }
+
+.nav-panel a {
+  display: block;
+  padding: 0.85rem 1.25rem;
+  color: var(--parchment);
+  font-size: 0.9375rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-panel a:hover {
+  color: var(--gold);
+  background: rgba(255,255,255,0.04);
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+  z-index: 20;
+}
+
+.nav-overlay.open {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* ---------------- shared layout ---------------- */
@@ -261,19 +380,19 @@ h3 {
   color: var(--ink);
 }
 
-/* ---------------- offering ---------------- */
+/* ---------------- back to top ---------------- */
 
-.offering {
-  background: var(--card);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 1.5rem;
-  font-size: 0.9688rem;
+.back-to-top {
+  display: inline-block;
+  margin-top: 1.75rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-decoration: none;
 }
 
-.offering a.inline-cta {
-  font-weight: 600;
+.back-to-top:hover {
   color: var(--gold-deep);
+  text-decoration: underline;
 }
 
 /* ---------------- plain terms ---------------- */
@@ -321,15 +440,34 @@ footer .fine {
 
 <body>
 
-<header class="letterhead">
+<header class="letterhead" id="top">
+  <button class="menu-trigger" id="menuTrigger" aria-expanded="false" aria-controls="navPanel" aria-label="Open menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <p class="cross" aria-hidden="true">✝</p>
   <h1>Sanctuary</h1>
-  <p class="standfirst">A monthly letter from Kenneth H. Otto, author of <em>The Law of Resonant Alignment</em>.</p>
+  <p class="standfirst">A monthly letter from Kenneth H. Otto, author of <em><a href="https://www.amazon.com/dp/B0H3NBN9G4">The Law of Resonant Alignment</a></em>.</p>
   <div class="rule" role="presentation"></div>
 </header>
 
+<div class="nav-overlay" id="navOverlay"></div>
+
+<nav class="nav-panel" id="navPanel" aria-label="Section navigation">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#arrives">What Arrives</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#on-the-price">On the Price</a></li>
+    <li><a href="#terms">The Plain Terms</a></li>
+    <li><a href="#share-story">Share Your Story</a></li>
+  </ul>
+</nav>
+
 <main>
 
-  <section>
+  <section id="overview">
     <div class="wrap">
       <h2>A tuned instrument makes a note. An amplified one fills the room.</h2>
       <p class="lede">The book gets you tuned. Staying tuned is a different problem, and it isn't solved by reading something once.</p>
@@ -339,10 +477,11 @@ footer .fine {
       <div class="pull">
         <p>Eight amplifiers are named in chapter eleven of the book — worship, gratitude, Scripture, community, nature, sound and light, purposeful action, service. Not one of them is digital. That is not nostalgia. It is the reason this letter is written the way it is, and the reason you can have it printed and mailed if you want it that way.</p>
       </div>
+      <a class="back-to-top" href="#top">↑ Back to top</a>
     </div>
   </section>
 
-  <section>
+  <section id="arrives">
     <div class="wrap">
       <h2>What arrives</h2>
       <p>The first year works through the twelve ideas the book is built on, one per letter, in order.</p>
@@ -369,10 +508,11 @@ footer .fine {
         </li>
       </ul>
       <p style="margin-top:1.5rem;">Letters go out at the start of each month. Print copies are mailed from Alberta, Canada, so allow a week or two beyond that depending where you are.</p>
+      <a class="back-to-top" href="#top">↑ Back to top</a>
     </div>
   </section>
 
-  <section>
+  <section id="pricing">
     <div class="wrap wrap--wide">
       <h2>Two ways to receive it</h2>
       <p>Same letter, same words, two different ways of arriving. Choose the one that fits how you actually read.</p>
@@ -408,39 +548,22 @@ footer .fine {
       <!-- This box only appears if a payment link above has not been filled in.
            It stops a visitor hitting a dead checkout button. -->
       <p class="notice" id="setupNotice" hidden></p>
+      <a class="back-to-top" href="#top">↑ Back to top</a>
     </div>
   </section>
 
-  <!-- ================================================================
-       OPTIONAL LOVE-OFFERING BLOCK.
-       Stripe's "customers choose what to pay" setting does not apply to
-       recurring subscriptions, so this is a SEPARATE one-time payment
-       link. If you make one, paste its URL over
-       PASTE_STRIPE_OFFERING_LINK_HERE below and delete the word "hidden"
-       from the <section> tag. If you decide not to offer this, delete
-       this whole section and remove the matching line from Card 12.
-       ================================================================ -->
-  <section id="offeringSection" hidden>
-    <div class="wrap">
-      <div class="offering">
-        <h3>If it has meant more than that</h3>
-        <p>Some readers have asked whether they can give beyond the subscription price. You can, as a one-time gift of whatever amount you choose. It is not expected and it changes nothing about what you receive.</p>
-        <p style="margin-bottom:0;"><a class="inline-cta" href="PASTE_STRIPE_OFFERING_LINK_HERE">Send a one-time gift</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section>
+  <section id="on-the-price">
     <div class="wrap">
       <h2>On the price</h2>
       <p>I will be straight about this, because the audience this book found is rightly suspicious of Christian teaching with a price tag on it.</p>
       <p>Nine dollars and ninety-seven cents is what the email letter costs because writing one properly takes a week of evenings, and that is a fair number for a month of someone's attention. Nineteen ninety-seven is what the printed one costs because paper, ink, envelope, and postage across a border are real money before I have earned anything, and because folding and stamping them is time I have to protect by keeping that list small.</p>
       <p>Nothing here is sold as a spiritual return on investment. You are not buying an outcome. You are paying for a letter.</p>
       <p style="margin-bottom:0;">The book itself is on Amazon at the usual price, and the free guide costs nothing. If money is tight, read those and keep your money.</p>
+      <a class="back-to-top" href="#top">↑ Back to top</a>
     </div>
   </section>
 
-  <section>
+  <section id="terms">
     <div class="wrap">
       <h2>The plain terms</h2>
       <dl class="terms">
@@ -459,6 +582,15 @@ footer .fine {
         <dt>Your email</dt>
         <dd>Used to send the letter and nothing else. Every letter has an unsubscribe link.</dd>
       </dl>
+      <a class="back-to-top" href="#top">↑ Back to top</a>
+    </div>
+  </section>
+
+  <section id="share-story">
+    <div class="wrap">
+      <h2>If this has meant something</h2>
+      <p>If the book, the free guide, or a letter has moved any part of your life, I would love to hear about it. Email me the story, whatever shape it takes — with your permission, I may share it anonymously in a future letter, so someone further back on the same road knows they aren't the only one.</p>
+      <p style="margin-bottom:0;"><a href="mailto:kenneth@ottoaligned.com">Share your story</a></p>
     </div>
   </section>
 
@@ -466,7 +598,7 @@ footer .fine {
 
 <footer>
   <p><strong>Kenneth H. Otto</strong><br>
-  Author of <em>The Law of Resonant Alignment</em></p>
+  Author of <em><a href="https://www.amazon.com/dp/B0H3NBN9G4">The Law of Resonant Alignment</a></em></p>
   <p><a href="https://ottoaligned.com">ottoaligned.com</a> &nbsp;·&nbsp; <a href="mailto:kenneth@ottoaligned.com">kenneth@ottoaligned.com</a></p>
   <p class="fine">Payments handled by Stripe. This page does not use tracking cookies.</p>
 </footer>
@@ -498,16 +630,43 @@ footer .fine {
       + ' option is still being connected — check back shortly.';
     notice.hidden = false;
   }
+})();
 
-  /* Same guard for the optional one-time gift link. */
-  var offering = document.getElementById('offeringSection');
-  if (offering && !offering.hidden) {
-    var giftLink = offering.querySelector('a.inline-cta');
-    var giftHref = giftLink ? (giftLink.getAttribute('href') || '') : '';
-    if (giftHref.indexOf('PASTE_STRIPE_') === 0) {
-      offering.hidden = true;
-    }
+/* ------------------------------------------------------------------
+   Hidden section-navigation menu: toggles open/closed on click,
+   closes when a link inside it is used, and closes when the
+   overlay behind it (i.e. anywhere outside the drawer) is clicked.
+   ------------------------------------------------------------------ */
+(function () {
+  var trigger = document.getElementById('menuTrigger');
+  var panel = document.getElementById('navPanel');
+  var overlay = document.getElementById('navOverlay');
+  if (!trigger || !panel || !overlay) return;
+
+  function closeMenu() {
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-label', 'Open menu');
+    panel.classList.remove('open');
+    overlay.classList.remove('open');
   }
+
+  function openMenu() {
+    trigger.setAttribute('aria-expanded', 'true');
+    trigger.setAttribute('aria-label', 'Close menu');
+    panel.classList.add('open');
+    overlay.classList.add('open');
+  }
+
+  trigger.addEventListener('click', function () {
+    var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+    if (isOpen) { closeMenu(); } else { openMenu(); }
+  });
+
+  overlay.addEventListener('click', closeMenu);
+
+  panel.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeMenu);
+  });
 })();
 </script>
 
